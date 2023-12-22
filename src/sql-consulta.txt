@@ -1,0 +1,36 @@
+create database products;
+// CREE UNA TABLA DE PRODUCTOS CON LOS SIGUIENTES VALORES Y TIPO.
+
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT,
+    EAN VARCHAR(255),
+    SKU VARCHAR(255),
+    MARKET VARCHAR(255),
+    NORMAL_PRICE INT,
+    discount_price INT,
+    active INT,
+    create_date DATETIME,
+    PRIMARY KEY (id)
+);
+
+//INSERTE LOS DATOS DE LOS PRODUCTOS MANUALMENTE
+
+INSERT INTO productos (EAN, SKU, MARKET, NORMAL_PRICE, discount_price, active, create_date)
+VALUES
+('123456789012', 'ABC1', 'EU',12,8,1,'2023-12-20'),
+('987654321098', 'XYZ1', 'EU',9,4,1,'2023-12-20'),
+('111111111111', 'ABC2', 'US',15,10,0,'2023-12-15'),
+('987654321098', 'XYZ1', 'US',8,6,0,'2023-12-18'),
+('123456789012', 'ABC2', 'EU',14,7,1,'2023-12-18');
+
+
+//  CON ESTA CONSULTA LE SOLICITAMOS QUE DE TODOS LOS PRODUCTOS NOS TRAIGAN LOS PRODUCTOS QUE TIENEN EL PRECIO MENOR DE SU RESPECTIVO EAN Y QUE ESTEN ACTIVOS. 
+ ACTIVO = 1.
+
+ SELECT id,EAN,SKU,MARKET,NORMAL_PRICE FROM productos WHERE (EAN,NORMAL_PRICE) IN (SELECT EAN,MIN(NORMAL_PRICE) FROM productos where active = 1 GROUP BY EAN);
+
+EJERCICIO 2
+
+Se podria hacer un proceso de automatizacion donde se identifique
+los productos activos hace un tiempo determinado y 
+aplicarles automaticamente una actualizacion de precios segun los requerimientos del negocio.
